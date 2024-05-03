@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://2kcpsdid1aym"]
+
+[ext_resource type="Script" path="res://steve.gd" id="1_ardae"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_gu7un"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3l1wf"]
+albedo_color = Color(0, 0.788235, 0.886275, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ab7pd"]
+
+[node name="steve" type="CharacterBody3D"]
+script = ExtResource("1_ardae")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.612425, 0, 0, 0, 0.612425, 0, 0, 0, 0.612425, 0, 0, 0)
+mesh = SubResource("BoxMesh_gu7un")
+surface_material_override/0 = SubResource("StandardMaterial3D_3l1wf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.596216, 0, 0, 0, 0.596216, 0, 0, 0, 0.596216, 0, 0, 0)
+shape = SubResource("BoxShape3D_ab7pd")
+
+[node name="cameraController" type="Node3D" parent="."]
+top_level = true
+
+[node name="cameraTarget" type="Node3D" parent="cameraController"]
+transform = Transform3D(-0.103361, 1.01632, -0.00560264, -0.144744, -0.0168633, -1.50842, -1.06664, -0.0961963, 0.205236, -1.93362, 1.196, 3.96999)
+
+[node name="Camera3D" type="Camera3D" parent="cameraController/cameraTarget"]
+transform = Transform3D(-0.0971179, 0.201887, -0.897206, 0.974016, 0.0202845, -0.100868, -0.00156984, -0.6409, -0.144044, -0.136847, 1.5094, -0.00374281)

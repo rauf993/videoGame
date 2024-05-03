@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://48ed2lggr7bq"]
+
+[ext_resource type="Script" path="res://coin.gd" id="1_lqgb4"]
+[ext_resource type="ArrayMesh" uid="uid://biavahg6ld4cw" path="res://assets/templates/con3.res" id="2_uirp6"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_yddpe"]
+height = 0.15
+radius = 0.3
+
+[node name="coin" type="Area3D"]
+script = ExtResource("1_lqgb4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0146646, -0.246361, 0, -1.33803e-08, 3.99752e-10, -0.266681, 0.304857, 0.0118508, -1.1657e-08, 0.0237645, -0.0117286, -0.0144066)
+mesh = ExtResource("2_uirp6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.0155472, -0.961662, -4.66858e-06, 0.961662, 0.0155472, -1.56853e-05, 1.57587e-05, -4.41448e-06, 0.961787, 0, 0, 0)
+shape = SubResource("CylinderShape3D_yddpe")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

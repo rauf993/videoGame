@@ -1,0 +1,78 @@
+[gd_scene load_steps=10 format=3 uid="uid://c3gny8y6tmnn5"]
+
+[ext_resource type="PackedScene" uid="uid://2kcpsdid1aym" path="res://steve.tscn" id="1_0jr38"]
+[ext_resource type="PackedScene" uid="uid://o51xl5ryca4x" path="res://block.tscn" id="1_hxlep"]
+[ext_resource type="Texture2D" uid="uid://blyvjxy5c8s65" path="res://icon.svg" id="3_ech5a"]
+[ext_resource type="Script" path="res://Icon.gd" id="4_02fkq"]
+[ext_resource type="PackedScene" uid="uid://48ed2lggr7bq" path="res://coin.tscn" id="5_pa8mr"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="6_dvcnl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_acrkj"]
+albedo_color = Color(0.411765, 1, 0.745098, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vtetl"]
+material = SubResource("StandardMaterial3D_acrkj")
+size = Vector3(10, 0.5, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5ttc4"]
+size = Vector3(10, 0.5, 10)
+
+[node name="Level 1" type="Node3D"]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_vtetl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_5ttc4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.703896, -0.268326, 0.657672, -0.710259, -0.276194, 0.647494, 0.0079053, -0.922886, -0.384993, 1.05849, 4.30932, -2.84635)
+
+[node name="steve" parent="." instance=ExtResource("1_0jr38")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5882, 1.4041, 0)
+
+[node name="bloques" type="Node3D" parent="."]
+transform = Transform3D(0.988263, 0, 0, 0, 0.988263, 0, 0, 0, 0.988263, 0, 0, 0)
+
+[node name="Block" parent="bloques" instance=ExtResource("1_hxlep")]
+transform = Transform3D(-0.919414, -0.393064, -0.0133422, -0.00456329, -0.0232605, 0.99972, -0.393264, 0.919217, 0.0195923, 1.31894, 3.0583, -0.111284)
+
+[node name="Block2" parent="bloques" instance=ExtResource("1_hxlep")]
+transform = Transform3D(-0.919414, -0.393064, -0.0133422, -0.00456329, -0.0232605, 0.99972, -0.393264, 0.919217, 0.0195923, -1.6153, 3.0583, -0.111284)
+
+[node name="Icon" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2716, 0)
+texture = ExtResource("3_ech5a")
+script = ExtResource("4_02fkq")
+
+[node name="coins" type="Node3D" parent="."]
+
+[node name="coin" parent="coins" instance=ExtResource("5_pa8mr")]
+transform = Transform3D(1, 0, 0, 0, 0.9, 0, 0, 0, 1, -2.99098, 0.785527, 2.77639)
+
+[node name="coin2" parent="coins" instance=ExtResource("5_pa8mr")]
+transform = Transform3D(1, 0, 0, 0, 0.9, 0, 0, 0, 1, -3.86828, 0.689885, -3.23497)
+
+[node name="coin3" parent="coins" instance=ExtResource("5_pa8mr")]
+transform = Transform3D(1, 0, 0, 0, 0.9, 0, 0, 0, 1, 2.40132, 0.571548, 4.40164)
+
+[node name="coin4" parent="coins" instance=ExtResource("5_pa8mr")]
+transform = Transform3D(1, 0, 0, 0, 0.9, 0, 0, 0, 1, 2.90663, 0.817836, -2.12116)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchor_right = 0.417
+offset_left = -261.0
+offset_top = -164.0
+offset_right = 3403.62
+offset_bottom = 903.0
+
+[node name="Node2D" type="Node2D" parent="Control"]
+
+[node name="Virtual Joystick" parent="Control/Node2D" instance=ExtResource("6_dvcnl")]
+offset_left = 1057.0
+offset_top = 488.0
+offset_right = 1357.0
+offset_bottom = 788.0
