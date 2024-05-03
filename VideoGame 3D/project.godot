@@ -14,3 +14,12 @@ config/name="videogame 3D"
 run/main_scene="res://Level_1.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+pointing/emulate_mouse_from_touch=false
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true

@@ -1,11 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://c3gny8y6tmnn5"]
+[gd_scene load_steps=11 format=3 uid="uid://c3gny8y6tmnn5"]
 
 [ext_resource type="PackedScene" uid="uid://2kcpsdid1aym" path="res://steve.tscn" id="1_0jr38"]
 [ext_resource type="PackedScene" uid="uid://o51xl5ryca4x" path="res://block.tscn" id="1_hxlep"]
 [ext_resource type="Texture2D" uid="uid://blyvjxy5c8s65" path="res://icon.svg" id="3_ech5a"]
 [ext_resource type="Script" path="res://Icon.gd" id="4_02fkq"]
 [ext_resource type="PackedScene" uid="uid://48ed2lggr7bq" path="res://coin.tscn" id="5_pa8mr"]
-[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="6_dvcnl"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="6_aiog6"]
+[ext_resource type="Texture2D" uid="uid://cbqqlggklp6sy" path="res://assets/jump.png" id="6_uk7a2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_acrkj"]
 albedo_color = Color(0.411765, 1, 0.745098, 1)
@@ -24,6 +25,9 @@ size = Vector3(10, 0.5, 10)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
 mesh = SubResource("BoxMesh_vtetl")
 
+[node name="coin3" parent="Floor/MeshInstance3D" instance=ExtResource("5_pa8mr")]
+transform = Transform3D(1, 0, 0, 0, 0.9, 0, 0, 0, 1, 1.11397, 2.57197, 2.32196)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("BoxShape3D_5ttc4")
 
@@ -39,11 +43,24 @@ transform = Transform3D(0.988263, 0, 0, 0, 0.988263, 0, 0, 0, 0.988263, 0, 0, 0)
 [node name="Block" parent="bloques" instance=ExtResource("1_hxlep")]
 transform = Transform3D(-0.919414, -0.393064, -0.0133422, -0.00456329, -0.0232605, 0.99972, -0.393264, 0.919217, 0.0195923, 1.31894, 3.0583, -0.111284)
 
+[node name="Block4" parent="bloques" instance=ExtResource("1_hxlep")]
+transform = Transform3D(-0.919414, -0.393064, -0.0133422, -0.00456329, -0.0232605, 0.99972, -0.393264, 0.919217, 0.0195923, 1.27373, 0.801521, 1.52212)
+
+[node name="Block5" parent="bloques" instance=ExtResource("1_hxlep")]
+transform = Transform3D(-0.919415, -0.393065, -0.0133422, 0.00455906, -0.044574, 0.998998, -0.393265, 0.918432, 0.0427739, 0.862244, 0.75775, 2.44183)
+
+[node name="Block6" parent="bloques" instance=ExtResource("1_hxlep")]
+transform = Transform3D(-0.919416, -0.393065, -0.0133422, 0.00455906, -0.0445741, 0.998998, -0.393265, 0.918432, 0.0427739, 1.04699, 1.77131, 2.0927)
+
 [node name="Block2" parent="bloques" instance=ExtResource("1_hxlep")]
 transform = Transform3D(-0.919414, -0.393064, -0.0133422, -0.00456329, -0.0232605, 0.99972, -0.393264, 0.919217, 0.0195923, -1.6153, 3.0583, -0.111284)
 
+[node name="Block3" parent="bloques" instance=ExtResource("1_hxlep")]
+transform = Transform3D(-0.933514, -0.355138, -0.0493024, -0.0509703, -0.00466341, 0.998691, -0.354902, 0.934803, -0.0137482, -1.36173, 0.773674, -2.77427)
+
 [node name="Icon" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2716, 0)
+visible = false
 texture = ExtResource("3_ech5a")
 script = ExtResource("4_02fkq")
 
@@ -61,18 +78,39 @@ transform = Transform3D(1, 0, 0, 0, 0.9, 0, 0, 0, 1, 2.40132, 0.571548, 4.40164)
 [node name="coin4" parent="coins" instance=ExtResource("5_pa8mr")]
 transform = Transform3D(1, 0, 0, 0, 0.9, 0, 0, 0, 1, 2.90663, 0.817836, -2.12116)
 
+[node name="coin5" parent="coins" instance=ExtResource("5_pa8mr")]
+transform = Transform3D(0.445474, 0.0132132, -0.895174, 0.125665, -0.891893, 0.046283, -0.886432, -0.119799, -0.443307, -1.33398, 1.54203, -2.63243)
+
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
-anchor_right = 0.417
-offset_left = -261.0
-offset_top = -164.0
-offset_right = 3403.62
-offset_bottom = 903.0
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="Node2D" type="Node2D" parent="Control"]
+[node name="Test" type="Node2D" parent="Control"]
 
-[node name="Virtual Joystick" parent="Control/Node2D" instance=ExtResource("6_dvcnl")]
-offset_left = 1057.0
-offset_top = 488.0
-offset_right = 1357.0
-offset_bottom = 788.0
+[node name="UI" type="CanvasLayer" parent="Control/Test"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Test/UI"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Control" type="Control" parent="Control/Test/UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Salto" type="TouchScreenButton" parent="Control/Test/UI/Control"]
+position = Vector2(935, 454)
+scale = Vector2(1.45455, 1.5463)
+texture_normal = ExtResource("6_uk7a2")
+shape_centered = false
+action = "ui_accept"
+visibility_mode = 1
+
+[node name="Virtual Joystick" parent="Control/Test/UI" instance=ExtResource("6_aiog6")]
+offset_left = -15.0
+offset_top = -272.0
+offset_right = 285.0
+offset_bottom = 28.0
